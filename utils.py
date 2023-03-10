@@ -73,7 +73,7 @@ class FireDetectorModel:
 
         df = pd.DataFrame(array, columns = self.features)
         df['Fire'] = [1 for i in range(len(df))] if fire else [0 for i in range(len(df))]
-        if self.save_datasets: df.to_csv(f"dataset-{fire}.csv", index = False)
+        if self.save_datasets: df.to_csv(f"datasets/dataset-{fire}.csv", index = False)
         self.df = df
 
     def merge_datasets(self) -> None:
@@ -82,10 +82,10 @@ class FireDetectorModel:
         Merges the fire and non-fire datasets into a single dataframe and saves as a csv if save_datasets is True
         '''
 
-        df1 = pd.read_csv("dataset-True.csv")
-        df2 = pd.read_csv("dataset-False.csv")
+        df1 = pd.read_csv("datasets/dataset-True.csv")
+        df2 = pd.read_csv("datasets/dataset-False.csv")
         df = pd.concat([df1, df2], ignore_index = True)
-        if self.save_datasets: df.to_csv("dataset.csv", index = False)
+        if self.save_datasets: df.to_csv("datasets/dataset.csv", index = False)
         self.df = df
 
     def preprocess_data(self) -> None:

@@ -11,8 +11,8 @@
 - [Arduino](https://arduino.cc)
 - [MQ2 Gas Sensor](https://github.com/labay11/MQ-2-sensor-library)
 - [DHT11 Temperature Sensor](https://www.arduinolibraries.info/libraries/dht-sensor-library)
-- [sklearn]()
-- [Streamlit]()
+- [sklearn](https://scikit-learn.org/)
+- [Streamlit](https://streamlit.io/)
 
 # Usage
 - Setup your arduino, breadboard and sensors as shown [here](![](images/project-diagram.png))
