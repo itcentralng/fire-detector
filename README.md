@@ -12,15 +12,21 @@
 - [MQ2 Gas Sensor](https://github.com/labay11/MQ-2-sensor-library)
 - [DHT11 Temperature Sensor](https://www.arduinolibraries.info/libraries/dht-sensor-library)
 - [sklearn](https://scikit-learn.org/)
-- [Streamlit](https://streamlit.io/)
+- [Pynecone](https://pynecone.io/)
 
 # Usage
 - Setup your arduino, breadboard and sensors as shown [here](![](images/project-diagram.png))
 - Upload this [sketch](fire-detector\Fire-Detector\Fire-Detector.ino) to the microcontroller using Arduino IDE or VS Code
 - `pip install -r requirements.txt`
-- `streamlit run app.py`
+- `pc init`
+- `pc run`
 
 # Demo
+
+- ![Home Page](images/screen_1.png)
+- ![Monitor Page](images/screen_2.png)
+- ![Show full details](images/screen_3.png)
+- ![Fire scenario](images/screen_4.png)
 
 # Project Diagram
 ![Project Diagram](images/project-diagram.png)

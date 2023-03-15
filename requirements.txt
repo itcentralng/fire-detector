@@ -1,5 +1,7 @@
 streamlit
 pyserial
+pynecone
+nest_asyncio
 sklearn
 matplotlib
 joblib
