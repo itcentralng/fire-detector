@@ -1,0 +1,5 @@
+{
+    "port": "COM9",
+    "board": "arduino:avr:uno",
+    "sketch": "Fire-Detector\\Fire-Detector.ino"
+}

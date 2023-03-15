@@ -15,7 +15,7 @@ plt.rcParams.update({'font.size': 5})
 field = st.empty()
 ser = serial.Serial()
 ser.setPort("COM9")
-monitor = st.checkbox("Monitor")  
+monitor = st.button("Monitor")  
 
 if "port_state" not in st.session_state:
     st.session_state["port_state"] = False
@@ -24,60 +24,75 @@ if monitor:
     #if st.session_state.port_state:
         #ser.close()
         #st.session_state.port_state = False
-    global RUN
-    RUN = False
+    #global RUN
+    #RUN = False
     
     curr_time = time.strftime("%H:%M:%S  ", time.localtime())
 
-    with st.spinner():
+    print("Point 1")
+
+    with st.spinner("Loading..."):
     
         with open('log.txt', 'r') as f:
             reading = ast.literal_eval(f.readlines()[-1])
             LPG, CO, Smoke, Temperature, Humidity = reading[1:]
         st.markdown(f"#### ⌚{curr_time} `LPG` {LPG}  `CO` {CO} `Smoke` {Smoke} `Temp` {Temperature} `Humidity` {Humidity} ")
         details = st.expander("See full report")
-        
-        LPGs = []
-        COs = []
-        Smokes = []
-        Temperatures = []
-        Humiditys = []
+    
+    print("Point 2")
 
-        with open('log.txt', 'r') as f:
-            readings = f.readlines()[-200:]
-            for reading in readings:
-                reading = ast.literal_eval(reading.strip())
-                LPGs.append(reading[1])
-                COs.append(reading[2])
-                Smokes.append(reading[3])
-                Temperatures.append(reading[4])
-                Humiditys.append(reading[5])    
+    LPGs = []
+    COs = []
+    Smokes = []
+    Temperatures = []
+    Humiditys = []
 
-        fig, axis = plt.subplots(2, 3)
-        axis[0, 0].plot(LPGs, color = 'g')
-        axis[0, 0].title.set_text("LPG")
-        axis[0, 0].get_xaxis().set_visible(False)
+    print("Point 3")
 
-        axis[0, 1].plot(COs, color = 'g')
-        axis[0, 1].title.set_text("CO")
-        axis[0, 1].get_xaxis().set_visible(False)
+    with open('log.txt', 'r') as f:
+        readings = f.readlines()[-20:]
+        for reading in readings:
+            reading = ast.literal_eval(reading.strip())
+            LPGs.append(reading[1])
+            COs.append(reading[2])
+            Smokes.append(reading[3])
+            Temperatures.append(reading[4])
+            Humiditys.append(reading[5])    
 
-        axis[0, 2].plot(Smokes, color = 'g')
-        axis[0, 2].title.set_text("Smoke")
-        axis[0, 2].get_xaxis().set_visible(False)
+    fig, axis = plt.subplots(2, 3)
+    axis[0, 0].plot(LPGs, color = 'g')
+    axis[0, 0].title.set_text("LPG")
+    axis[0, 0].set_ylim(0, max(LPGs)+1)
+    axis[0, 0].get_xaxis().set_visible(False)
 
-        axis[1, 0].plot(Temperatures, color = 'g')
-        axis[1, 0].title.set_text("Temperature")
-        axis[1, 0].get_xaxis().set_visible(False)
+    axis[0, 1].plot(COs, color = 'g')
+    axis[0, 1].title.set_text("CO")
+    axis[0, 1].set_ylim(0, max(COs)+1)
+    axis[0, 1].get_xaxis().set_visible(False)
 
-        axis[1, 1].plot(Humiditys, color = 'g')
-        axis[1, 1].title.set_text("Humidity")
-        axis[1, 1].get_xaxis().set_visible(False)
+    axis[0, 2].plot(Smokes, color = 'g')
+    axis[0, 2].title.set_text("Smoke")
+    axis[0, 2].set_ylim(0, max(Smokes)+1)
+    axis[0, 2].get_xaxis().set_visible(False)
 
-        axis[1, 2].set_visible(False)
+    axis[1, 0].plot(Temperatures, color = 'g')
+    axis[1, 0].title.set_text("Temperature")
+    axis[1, 0].set_ylim(0, max(Temperatures)+1)
+    axis[1, 0].get_xaxis().set_visible(False)
+
+    axis[1, 1].plot(Humiditys, color = 'g')
+    axis[1, 1].title.set_text("Humidity")
+    axis[1, 1].set_ylim(0, max(Humiditys)+1)
+    axis[1, 1].get_xaxis().set_visible(False)
+
+    axis[1, 2].set_visible(False)
+
+    print("Point 4")
 
     with details:
         st.pyplot(fig)
+
+    print("Point 5")
 
 RUN = True
 
@@ -101,7 +116,7 @@ while RUN:
             cond = "## Everything looks good ✅"
         else: cond = "## Fire Detected ⚠️"
         with field.container():
-            st.markdown(cond)
+            st.markdown(cond) 
         curr_time = time.strftime("%H:%M:%S", time.localtime())
-        #with open('log.txt', 'a') as f:
-        #    f.write(f"{curr_time, *values}\n")  
+        with open('log.txt', 'a') as f:
+            f.write(f"{curr_time, *values}\n")  
