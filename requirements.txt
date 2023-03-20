@@ -4,6 +4,6 @@ pynecone
 nest_asyncio
 sklearn
 matplotlib
-joblib
+joblib==1.2
 pandas
 numpy
