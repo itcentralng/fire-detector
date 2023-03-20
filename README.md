@@ -14,6 +14,10 @@
 - [sklearn](https://scikit-learn.org/)
 - [Pynecone](https://pynecone.io/)
 
+# Prerequisites
+
+- [Node.js](https://nodejs.org/en/download) `12.22.0+`
+
 # Usage
 - Setup your arduino, breadboard and sensors as shown [here](![](images/project-diagram.png))
 - Upload this [sketch](fire-detector\Fire-Detector\Fire-Detector.ino) to the microcontroller using Arduino IDE or VS Code
@@ -23,10 +27,10 @@
 
 # Demo
 
-- ![Home Page](images/screen_1.png)
-- ![Monitor Page](images/screen_2.png)
-- ![Show full details](images/screen_3.png)
-- ![Fire scenario](images/screen_4.png)
+![Home Page](images/screen_1.png)
+![Monitor Page](images/screen_2.png)
+![Show full details](images/screen_3.png)
+![Fire scenario](images/screen_4.png)
 
 # Project Diagram
 ![Project Diagram](images/project-diagram.png)
