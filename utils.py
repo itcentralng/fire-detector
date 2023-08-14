@@ -5,6 +5,7 @@ from sklearn.svm import SVC
 from sklearn.linear_model import SGDClassifier
 from sklearn import tree
 from joblib import dump
+from sklearn.metrics import f1_score, recall_score, precision_score
 
 class FireDetectorModel:
     def __init__(self, features, 
@@ -117,6 +118,10 @@ class FireDetectorModel:
         model.fit(self.X_train, self.y_train)
         dump(model, "model.joblib")
         self.accuracy = model.score(self.X_test, self.y_test) * 100
+        self.y_pred = model.predict(self.X_test)
+        self.f1_score = f1_score(self.y_test, self.y_pred)
+        self.recall_score = recall_score(self.y_test, self.y_pred)
+        self.precision_score = precision_score(self.y_test, self.y_pred)
 
     def __repr__(self) -> str:
 
@@ -124,5 +129,5 @@ class FireDetectorModel:
         Returns a string representation of the model
         '''
         
-        return "Model: " + self.model + " Accuracy: " + str(self.accuracy) + "%"
+        return f"Model: {self.model} Accuracy: {self.accuracy:.2f}% F1: {self.f1_score:.2f} Precision: {self.precision_score:.2f} Recall: {self.recall_score:.2f}"
     
